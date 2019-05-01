@@ -12,9 +12,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'blogs.insert'(blogTitle, blogDescription) {
-        check(blogTitle, String);
-        check(blogDescription, String);
+    'blogs.insert'(title, description) {
+        check(title, String);
+        check(description, String);
 
         // Need to be logged in before adding a blog
         if (!Meteor.userId()) {
@@ -22,8 +22,8 @@ Meteor.methods({
         }
 
         Blogs.insert({
-            blogTitle,
-            blogDescription,
+            title,
+            description,
             createdAt: new Date(),
             userId: Meteor.userId(),
             user: Meteor.user().username,
@@ -47,14 +47,9 @@ Meteor.methods({
         Blogs.update(blogId, {
             $set:
             {
-                blogTitle: newTitle,
-                blogDescription: newDescription
+                title: newTitle,
+                description: newDescription
             }
         });
-    },
-
-    'blogs.findOne'(blogId){
-        check(blogId, String)
-        Blogs.findOne({_id:blogId})
     }
 })

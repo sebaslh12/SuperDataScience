@@ -7,6 +7,15 @@ import { Blogs } from '../../api/blogs';
 
 class BlogView extends React.Component {
 
+    constructor(props){
+        super(props)
+        this.getBlog = this.getBlog.bind(this)
+    }
+
+    componentWillMount() {
+        this.blog = this.getBlog()
+    }
+
     getBlog() {
         const blogs = this.props.blogs
         const id = this.props.match.params.id
@@ -15,20 +24,19 @@ class BlogView extends React.Component {
         if (blog)
             return blog
         else
-            this.props.history.push('/')
+            this.props.history.push('/blog')
     }
 
     render() {
-        const blog = this.getBlog()
         return (
             <div>
                 <div className="card">
                     <h3 className="card-header">
-                        {blog.blogTitle}
+                        {this.blog.title}
                     </h3>
                     <div className="card-body">
                         <p className="card-text">
-                            {blog.blogDescription}
+                            {this.blog.description}
                         </p>
                     </div>
                 </div>

@@ -13,9 +13,10 @@ export const renderRoutes = () => (
         <div>
             <Route path="/login" component={LoginPage}></Route>
             <Route path="/signup" component={SignupPage}></Route>
-            <Route exact={true} path="/" component={AppContainer}></Route>
-            <Route exact={true} path="/blog" component={BlogFormPage}></Route>
-            <Route exact={true} path="/blog/:id" component={BlogView}></Route>
+            <Route exact={true} path="/blog" component={AppContainer}></Route>
+            <Route exact={true} path="/blogForm/:id" component={BlogFormPage}></Route>
+            <Route exact={true} path="/blogForm/" component={BlogFormPage}></Route>
+            <Route path="/blog/:id" component={BlogView}></Route>
         </div>
     </Router>
 )

@@ -20,7 +20,7 @@ export default class LoginPage extends React.Component {
                     error: err.reason
                 });
             } else {
-                this.props.history.push('/');
+                this.props.history.push('/blog');
             }
         });
     }
@@ -31,13 +31,13 @@ export default class LoginPage extends React.Component {
 
     componentWillMount() {
         if (this.isLoggedIn) {
-            this.props.history.push('/');
+            this.props.history.push('/blog');
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.isLoggedIn) {
-            this.props.history.push('/');
+            this.props.history.push('/blog');
         }
     }
 

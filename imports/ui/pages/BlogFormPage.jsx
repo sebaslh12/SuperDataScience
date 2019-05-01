@@ -1,27 +1,43 @@
 import { Meteor } from 'meteor/meteor'
+import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react'
+import PropTypes from 'prop-types'
+
+import { Blogs } from '../../api/blogs';
 
 
-export default class BlogFormPage extends React.Component {
+
+class BlogFormPage extends React.Component {
+    constructor(props) {
+        super(props)
+        this.getBlog = this.getBlog.bind(this)
+        this.blog = this.getBlog()
+    }
+
     state = {
         error: ''
     }
+    
+    getBlog = () => {
+        const blogs = this.props.blogs
+        this.id = this.props.match.params.id
+        if (this.id) {
+            return blogs.find((blog) => blog._id === this.id)
+        }
+    }
+
     handleSubmit(e) {
         e.preventDefault()
+
         const blogTitle = e.target.blogTitle.value
         const blogDescription = e.target.blogDescription.value
 
         if (blogTitle.trim()) {
-            Meteor.call('blogs.insert', blogTitle, blogDescription, (err, res) => {
-                if (err) {
-                    this.setState({
-                        error: err
-                    })
-                }
-                else {
-                    this.props.history.push('/')
-                }
-            })
+            if (this.id)
+                Meteor.call('blogs.update', this.id, blogTitle, blogDescription)
+            else
+                Meteor.call('blogs.insert', blogTitle, blogDescription)
+            this.props.history.push('/blog')
         } else {
             this.setState({
                 error: 'Title is required'
@@ -45,14 +61,14 @@ export default class BlogFormPage extends React.Component {
                                 : ''}
                             <form className="form col-md-12 center block" onSubmit={this.handleSubmit.bind(this)}>
                                 <div className="form-group">
-                                    <input className="form-control" type="text" name="blogTitle" placeholder="Blog Title" />
+                                    <input className="form-control" type="text" name="blogTitle" placeholder="Blog Title" defaultValue={this.blog ? this.blog.title : ''} />
 
                                 </div>
                                 <div className="form-group">
-                                    <textarea className="form-control" name="blogDescription" placeholder="Blog Description"></textarea>
+                                    <textarea className="form-control" name="blogDescription" placeholder="Blog Description" defaultValue={this.blog ? this.blog.description : ''}></textarea>
                                 </div>
                                 <div className="form-group text-center">
-                                    <button className="btn btn-success btn-lg btn-block">Create Blog</button>
+                                    <button className="btn btn-success btn-lg btn-block">{this.id ? 'Update blog' : 'Create blog'}</button>
                                 </div>
                             </form>
                         </div>
@@ -64,3 +80,14 @@ export default class BlogFormPage extends React.Component {
         )
     }
 }
+
+BlogFormPage.propTypes = {
+    blog: PropTypes.object
+}
+
+export default withTracker(() => {
+    Meteor.subscribe('blogs');
+    return {
+        blogs: Blogs.find().fetch(),
+    };
+})(BlogFormPage);

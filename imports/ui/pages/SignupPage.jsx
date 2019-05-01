@@ -19,7 +19,7 @@ export default class SignupPage extends React.Component {
                     error: err.reason
                 });
             } else {
-                this.props.history.push('/');
+                this.props.history.push('/blog');
             }
         });
     }
