@@ -6,6 +6,7 @@ import MainContainer from '../../ui/containers/MainContainer'
 
 import SignupPage from '../../ui/pages/SignupPage'
 import LoginPage from '../../ui/pages/LoginPage'
+import BlogFormPage from '../../ui/pages/BlogFormPage';
 
 export const renderRoutes = () => (
     <Router>
@@ -13,6 +14,7 @@ export const renderRoutes = () => (
             <Route path="/login" component={LoginPage}></Route>
             <Route path="/signup" component={SignupPage}></Route>
             <Route exact={true} path="/" component={AppContainer}></Route>
+            <Route exact={true} path="/blog" component={BlogFormPage}></Route>
         </div>
     </Router>
 )

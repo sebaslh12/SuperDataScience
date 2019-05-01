@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom'
 
 export default class NavBar extends React.Component {
 
@@ -24,7 +25,7 @@ export default class NavBar extends React.Component {
                     <div className="navbar-collapse">
                         <ul className="nav navbar-nav navbar-right">
                             <li className="nav-item">
-                            <a>{this.props.username}</a>
+                                <a>{this.props.username}</a>
                             </li>
                             <li className="nav-item">
                                 <a href="#" onClick={this.logout.bind(this)}>Logout</a>

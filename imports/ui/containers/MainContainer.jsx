@@ -8,7 +8,7 @@ export default class MainContainer extends React.Component {
         const user = Meteor.user()
         return (
             <div>
-                <NavBar username={user.username}></NavBar>
+                <NavBar username={user ? user.username : ''}></NavBar>
                 <MainPage></MainPage>
             </div>
         )
