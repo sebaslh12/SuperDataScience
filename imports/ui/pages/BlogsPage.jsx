@@ -15,7 +15,7 @@ class BlogsPage extends React.Component {
         let blogs = this.props.blogs
         return (
             <div className="container">
-                <div className="text-center">
+                <div className="list-group text-center">
                     {this.renderBlogs(blogs)}
                 </div>
             </div>
