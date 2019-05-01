@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MainPage from '../pages/MainPage.jsx'
+import BlogsPage from '../pages/BlogsPage'
 import NavBar from '../NavBar.jsx';
 
 export default class MainContainer extends React.Component {
@@ -9,7 +9,7 @@ export default class MainContainer extends React.Component {
         return (
             <div>
                 <NavBar username={user ? user.username : ''}></NavBar>
-                <MainPage></MainPage>
+                <BlogsPage></BlogsPage>
             </div>
         )
     }

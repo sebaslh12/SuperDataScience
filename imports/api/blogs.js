@@ -5,11 +5,11 @@ import { check } from 'meteor/check';
 export const Blogs = new Mongo.Collection('blogs')
 
 // Server side code only
-/* if (Meteor.isServer) {
+if (Meteor.isServer) {
     Meteor.publish('blogs', function publishBlogs() {
         return Blogs.find();
     });
-} */
+}
 
 Meteor.methods({
     'blogs.insert'(blogTitle, blogDescription) {
@@ -51,5 +51,10 @@ Meteor.methods({
                 blogDescription: newDescription
             }
         });
+    },
+
+    'blogs.findOne'(blogId){
+        check(blogId, String)
+        Blogs.findOne({_id:blogId})
     }
 })
