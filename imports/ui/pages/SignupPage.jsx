@@ -54,9 +54,10 @@ export default class SignupPage extends React.Component {
                                         placeholder="password" />
                                 </div>
                                 <div className="form-group">
-                                    <input type="submit" id="login-button"
-                                        className="btn btn-lg btn-primary btn-block"
-                                        value="Sign Up" />
+                                    <button id="login-button"
+                                        className="btn btn-primary btn-lg btn-block">
+                                        Signup
+                                    </button>
                                 </div>
                                 <div className="form-group">
                                     <p className="text-center">

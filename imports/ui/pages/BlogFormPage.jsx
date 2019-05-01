@@ -24,7 +24,7 @@ export default class BlogFormPage extends React.Component {
             })
         } else {
             this.setState({
-                error:'Title is required'
+                error: 'Title is required'
             })
         }
 
@@ -33,15 +33,33 @@ export default class BlogFormPage extends React.Component {
     render() {
         const error = this.state.error;
         return (
-            <div>
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    {error.length > 0 ?
-                        <div className="alert alert-danger fade in">{error}</div>
-                        : ''}
-                    <input type="text" name="blogTitle" placeholder="Blog Title" />
-                    <textarea name="blogDescription" placeholder="Blog Description"></textarea>
-                    <button>Create Blog</button>
-                </form>
+            <div className="modal show">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1>Create New Blog</h1>
+                        </div>
+                        <div className="modal-body">
+                            {error.length > 0 ?
+                                <div className="alert alert-danger fade in">{error}</div>
+                                : ''}
+                            <form className="form col-md-12 center block" onSubmit={this.handleSubmit.bind(this)}>
+                                <div className="form-group">
+                                    <input className="form-control" type="text" name="blogTitle" placeholder="Blog Title" />
+
+                                </div>
+                                <div className="form-group">
+                                    <textarea className="form-control" name="blogDescription" placeholder="Blog Description"></textarea>
+                                </div>
+                                <div className="form-group text-center">
+                                    <button className="btn btn-success btn-lg btn-block">Create Blog</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer"></div>
+                    </div>
+
+                </div>
             </div>
         )
     }

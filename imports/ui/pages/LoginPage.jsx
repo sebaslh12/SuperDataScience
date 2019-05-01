@@ -70,10 +70,10 @@ export default class LoginPage extends React.Component {
                                         placeholder="password" />
                                 </div>
                                 <div className="form-group text-center">
-                                    <input type="submit"
-                                        id="login-button"
-                                        className="btn btn-primary btn-lg btn-block"
-                                        value="Login" />
+                                    <button id="login-button"
+                                        className="btn btn-primary btn-lg btn-block">
+                                        Login
+                                    </button>
                                 </div>
                                 <div className="form-group text-center">
                                     <p className="text-center">
