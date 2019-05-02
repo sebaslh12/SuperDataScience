@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 export default class Blog extends React.Component {
 
     deleteBlog(id) {
-        if(confirm('Are you sure?'))
+        if (confirm('Are you sure?'))
             Meteor.call('blogs.remove', id)
     }
 
@@ -17,9 +17,15 @@ export default class Blog extends React.Component {
                 <div className="d-flex w-100 justify-content-between">
                     <h3 className="mb-1">{title}</h3>
                     <small className="blog-description">{description}</small>
-                    <button className="btn btn-xs pull-right" onClick={() => this.deleteBlog(id)}> <i className="fa fa-trash"></i> </button>
                     <Link className="btn btn-xs pull-right" to={`blog/${id}`}> <i className="fa fa-eye"></i></Link>
-                    <Link className="btn btn-xs pull-right" to={`blogForm/${id}`}> <i className="fa fa-pencil"></i></Link>
+                    {
+                        this.props.isAdmin ?
+                        <div className="pull-right">
+                            <button className="btn btn-xs" onClick={() => this.deleteBlog(id)}> <i className="fa fa-trash"></i> </button>
+                            <Link className="btn btn-xs" to={`blogForm/${id}`}> <i className="fa fa-pencil"></i></Link>
+                        </div> : ''
+                    }
+
                 </div>
             </div>
         )

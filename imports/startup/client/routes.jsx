@@ -6,7 +6,8 @@ import AppContainer from '../../ui/containers/AppContainer'
 import SignupPage from '../../ui/pages/SignupPage'
 import LoginPage from '../../ui/pages/LoginPage'
 import BlogFormPage from '../../ui/pages/BlogFormPage';
-import BlogView from '../../ui/blogs/BlogView';
+import ViewBlogPage from '../../ui/pages/ViewBlogPage';
+
 
 export const renderRoutes = () => (
     <Router>
@@ -16,7 +17,7 @@ export const renderRoutes = () => (
             <Route exact={true} path="/blog" component={AppContainer}></Route>
             <Route exact={true} path="/blogForm/:id" component={BlogFormPage}></Route>
             <Route exact={true} path="/blogForm/" component={BlogFormPage}></Route>
-            <Route path="/blog/:id" component={BlogView}></Route>
+            <Route path="/blog/:id" component={ViewBlogPage}></Route>
         </div>
     </Router>
 )

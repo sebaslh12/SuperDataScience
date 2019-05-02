@@ -7,8 +7,11 @@ import { Blogs } from '../../api/blogs';
 import Blog from './../blogs/Blog';
 
 class BlogsPage extends React.Component {
+    
+    isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
+
     renderBlogs(blogs) {
-        return blogs.map((blog) => <Blog key={blog._id} blog={blog}></Blog>)
+        return blogs.map((blog) => <Blog key={blog._id} blog={blog} isAdmin={this.isAdmin}></Blog>)
     }
 
     render() {

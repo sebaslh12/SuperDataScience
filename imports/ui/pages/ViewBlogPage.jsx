@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { Blogs } from '../../api/blogs';
 
-class BlogView extends React.Component {
+class ViewBlogPage extends React.Component {
 
     constructor(props){
         super(props)
@@ -50,4 +50,4 @@ export default withTracker(() => {
     return {
         blogs: Blogs.find().fetch(),
     };
-})(BlogView);
+})(ViewBlogPage);
