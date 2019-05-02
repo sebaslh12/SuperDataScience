@@ -7,7 +7,7 @@ import { Blogs } from '../../api/blogs';
 
 class ViewBlogPage extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.getBlog = this.getBlog.bind(this)
     }

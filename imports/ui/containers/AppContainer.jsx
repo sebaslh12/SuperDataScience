@@ -1,10 +1,12 @@
 import { Meteor } from 'meteor/meteor'
 import { Link } from 'react-router-dom'
+import { Roles } from 'meteor/alanning:roles'
+
 import React from 'react';
 
 import MainContainer from './MainContainer.jsx';
 
-export default class AppContainer extends React.Component {
+export default class AppContainer extends React.Component { 
 
     state = this.getMeteorData();
     isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
