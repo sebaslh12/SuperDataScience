@@ -8,17 +8,24 @@ import { Blogs } from '../../api/blogs';
 
 
 class BlogFormPage extends React.Component {
-    blog = null
+    constructor(props) {
+        super(props)
+        this.blog = null
+        this.state = {
+            error: ''
+        }
 
-    state = {
-        error: ''
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
+
 
     getBlog = () => {
         const blogs = this.props.blogs
-        this.id = this.props.match.params.id
-        if (this.id) {
-            return blogs.find((blog) => blog._id === this.id)
+        if (this.props.match) {
+            this.id = this.props.match.params.id
+            if (this.id) {
+                return blogs.find((blog) => blog._id === this.id)
+            }
         }
     }
 
@@ -29,7 +36,7 @@ class BlogFormPage extends React.Component {
         const blogDescription = e.target.blogDescription.value
 
         if (blogTitle.trim()) {
-            if (this.id)
+            if (this.id && this.blog)
                 Meteor.call('blogs.update', this.id, blogTitle, blogDescription)
             else
                 Meteor.call('blogs.insert', blogTitle, blogDescription)
@@ -39,7 +46,6 @@ class BlogFormPage extends React.Component {
                 error: 'Title is required'
             })
         }
-
     }
 
     render() {
@@ -56,13 +62,13 @@ class BlogFormPage extends React.Component {
                             {error.length > 0 ?
                                 <div className="alert alert-danger fade in">{error}</div>
                                 : ''}
-                            <form className="form col-md-12 center block" onSubmit={this.handleSubmit.bind(this)}>
+                            <form className="form col-md-12 center block" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <input className="form-control" type="text" name="blogTitle" placeholder="Blog Title" defaultValue={this.blog ? this.blog.title : ''} />
 
                                 </div>
                                 <div className="form-group">
-                                    <textarea className="form-control" name="blogDescription" placeholder="Blog Description" defaultValue={this.blog ? this.blog.description : ''}></textarea>
+                                    <input className="form-control" name="blogDescription" placeholder="Blog Description" defaultValue={this.blog ? this.blog.description : ''}></input>
                                 </div>
                                 <div className="form-group text-center">
                                     <button className="btn btn-success btn-lg btn-block">{this.id ? 'Update blog' : 'Create blog'}</button>

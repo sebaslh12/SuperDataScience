@@ -58,6 +58,9 @@ export default class AppContainer extends React.Component {
                                             <li className="nav-item">
                                                 <Link to={'/blogForm'}>Create Blog</Link>
                                             </li>
+                                            <li className="nav-item">
+                                                <Link to={'/admin/users'}>Users</Link>
+                                            </li>
                                         </ul> : ''
                                     }
                                     <ul className="nav navbar-nav navbar-right">

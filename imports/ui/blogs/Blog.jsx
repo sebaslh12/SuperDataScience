@@ -25,7 +25,6 @@ export default class Blog extends React.Component {
                             <Link className="btn btn-xs" to={`blogForm/${id}`}> <i className="fa fa-pencil"></i></Link>
                         </div> : ''
                     }
-
                 </div>
             </div>
         )
