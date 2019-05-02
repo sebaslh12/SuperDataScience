@@ -6,15 +6,7 @@ import PropTypes from 'prop-types'
 import { Blogs } from '../../api/blogs';
 
 class ViewBlogPage extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.getBlog = this.getBlog.bind(this)
-    }
-
-    componentWillMount() {
-        this.blog = this.getBlog()
-    }
+    blog = null
 
     getBlog() {
         const blogs = this.props.blogs
@@ -28,18 +20,22 @@ class ViewBlogPage extends React.Component {
     }
 
     render() {
+        this.blog = this.getBlog()
         return (
             <div>
-                <div className="card">
-                    <h3 className="card-header">
-                        {this.blog.title}
-                    </h3>
-                    <div className="card-body">
-                        <p className="card-text">
-                            {this.blog.description}
-                        </p>
-                    </div>
-                </div>
+                {
+                    this.blog ?
+                        <div className="card">
+                            <h3 className="card-header">
+                                {this.blog.title}
+                            </h3>
+                            <div className="card-body">
+                                <p className="card-text">
+                                    {this.blog.description}
+                                </p>
+                            </div>
+                        </div> : ''
+                }
             </div>
         )
     }

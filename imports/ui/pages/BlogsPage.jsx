@@ -8,7 +8,7 @@ import { Blogs } from '../../api/blogs';
 import Blog from './../blogs/Blog';
 
 class BlogsPage extends React.Component {
-    
+
     isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
 
     renderBlogs(blogs) {
@@ -16,6 +16,7 @@ class BlogsPage extends React.Component {
     }
 
     render() {
+        this.isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
         let blogs = this.props.blogs
         return (
             <div className="container">

@@ -6,7 +6,7 @@ import React from 'react';
 
 import MainContainer from './MainContainer.jsx';
 
-export default class AppContainer extends React.Component { 
+export default class AppContainer extends React.Component {
 
     state = this.getMeteorData();
     isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
@@ -41,33 +41,39 @@ export default class AppContainer extends React.Component {
 
     render() {
         const user = Meteor.user()
+        this.isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
+
         return (
             <div>
-                <nav className="navbar navbar-default navbar-static-top">
-                    <div className="container">
-                        <div className="navbar-header">
-                            <a className="navbar-brand" href="#">Blogs App</a>
-                        </div>
-                        <div className="navbar-collapse">
-                            {
-                                this.isAdmin ? <ul className="nav navbar-nav navbar-left">
-                                    <li className="nav-item">
-                                        <Link to={'/blogForm'}>Create Blog</Link>
-                                    </li>
-                                </ul> : ''
-                            }
-                            <ul className="nav navbar-nav navbar-right">
-                                <li className="nav-item">
-                                    <a>{user.username}</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a href="#" onClick={this.logout.bind(this)}>Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <MainContainer />
+                {
+                    user ? <div>
+                        <nav className="navbar navbar-default navbar-static-top">
+                            <div className="container">
+                                <div className="navbar-header">
+                                    <a className="navbar-brand" href="#">Blogs App</a>
+                                </div>
+                                <div className="navbar-collapse">
+                                    {
+                                        this.isAdmin ? <ul className="nav navbar-nav navbar-left">
+                                            <li className="nav-item">
+                                                <Link to={'/blogForm'}>Create Blog</Link>
+                                            </li>
+                                        </ul> : ''
+                                    }
+                                    <ul className="nav navbar-nav navbar-right">
+                                        <li className="nav-item">
+                                            <a>{user.username}</a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="#" onClick={this.logout.bind(this)}>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <MainContainer />
+                    </div> : ''
+                }
             </div>
         );
     }

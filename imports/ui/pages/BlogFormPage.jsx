@@ -8,16 +8,12 @@ import { Blogs } from '../../api/blogs';
 
 
 class BlogFormPage extends React.Component {
-    constructor(props) {
-        super(props)
-        this.getBlog = this.getBlog.bind(this)
-        this.blog = this.getBlog()
-    }
+    blog = null
 
     state = {
         error: ''
     }
-    
+
     getBlog = () => {
         const blogs = this.props.blogs
         this.id = this.props.match.params.id
@@ -47,6 +43,7 @@ class BlogFormPage extends React.Component {
     }
 
     render() {
+        this.blog = this.getBlog()
         const error = this.state.error;
         return (
             <div className="modal show">
