@@ -1,6 +1,6 @@
 import React from 'react'
 
-import BlogsPage from '../pages/BlogsPage'
+import BlogsPage from '../pages/blogs/BlogsPage'
 
 export default class MainContainer extends React.Component {
     render(){

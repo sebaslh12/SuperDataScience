@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Blogs } from '../../api/blogs';
+import { Blogs } from '../../../api/blogs';
 
 class ViewBlogPage extends React.Component {
     blog = null

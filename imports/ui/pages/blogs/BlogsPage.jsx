@@ -4,8 +4,8 @@ import { Roles } from 'meteor/alanning:roles'
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Blogs } from '../../api/blogs';
-import Blog from './../blogs/Blog';
+import { Blogs } from '../../../api/blogs';
+import Blog from './Blog';
 
 class BlogsPage extends React.Component {
 

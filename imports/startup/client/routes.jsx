@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import AppContainer from '../../ui/containers/AppContainer'
 
-import SignupPage from '../../ui/pages/SignupPage'
-import LoginPage from '../../ui/pages/LoginPage'
-import BlogFormPage from '../../ui/pages/BlogFormPage';
-import ViewBlogPage from '../../ui/pages/ViewBlogPage';
+import SignupPage from '../../ui/pages/login/SignupPage'
+import LoginPage from '../../ui/pages/login/LoginPage'
+import BlogFormPage from '../../ui/pages/blogs/BlogFormPage';
+import ViewBlogPage from '../../ui/pages/blogs/ViewBlogPage';
 
 
 export const renderRoutes = () => (
