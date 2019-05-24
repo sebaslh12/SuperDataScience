@@ -19,8 +19,6 @@ export default class LoginPage extends React.Component {
                 this.setState({
                     error: err.reason
                 });
-            } else {
-                this.props.history.push('/blog');
             }
         });
     }

@@ -1,47 +1,24 @@
+import React from 'react';
 import { Meteor } from 'meteor/meteor'
 import { Link } from 'react-router-dom'
 import { Roles } from 'meteor/alanning:roles'
+import { Accounts } from 'meteor/accounts-base'
 
-import React from 'react';
 
 import MainContainer from './MainContainer.jsx';
 
 export default class AppContainer extends React.Component {
 
-    state = this.getMeteorData();
     isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
 
-
-    getMeteorData() {
-        return { isAuthenticated: Meteor.userId() !== null };
-    }
-
-    componentWillMount() {
-        if (!this.state.isAuthenticated) {
-            this.props.history.push('/login');
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (!this.state.isAuthenticated) {
-            this.props.history.push('/login');
-        }
-    }
-
     logout(e) {
-        e.preventDefault();
-        Meteor.logout((err) => {
-            if (err) {
-                console.error(err.reason);
-            } else {
-                this.props.history.push('/login');
-            }
-        });
+        e.preventDefault()
+        Accounts.logout()
     }
 
     render() {
         const user = Meteor.user()
-        this.isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin']);
+        this.isAdmin = Roles.userIsInRole(Meteor.userId(), ['admin'])
 
         return (
             <div>
